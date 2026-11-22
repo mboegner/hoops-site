@@ -1,9 +1,10 @@
 // Animated play viewer. Usage: mountPlayer(containerElement, play).
-import { buildPlay, frameAt, pathLength, pointAlong } from './timeline.js';
-import { drawCourt, el } from './court.js';
+import { buildPlay, frameAt, normalizePlay, pathLength, pointAlong } from './timeline.js';
+import { drawBall, drawCourt, el } from './court.js';
 
 const TOKEN_R = 17;
 const STEP_GAP = 0.7; // pause between steps when playing the whole play
+const LOOP_GAP = 2; // pause on the last frame before autoplay starts over
 const SPEEDS = [1, 0.5];
 
 const d = (pts) => pts.map((p, i) => `${i ? 'L' : 'M'} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' ');
@@ -19,14 +20,13 @@ function endDirection(pts) {
 function trimEnd(pts, amount) {
   const len = pathLength(pts);
   if (len <= amount + 4) return pts;
-  const keep = (len - amount) / len;
   const out = [];
   let run = 0;
   for (let i = 0; i < pts.length; i += 1) {
     if (i) run += Math.hypot(pts[i].x - pts[i - 1].x, pts[i].y - pts[i - 1].y);
     if (run <= len - amount) out.push(pts[i]);
   }
-  out.push(pointAlong(pts, keep));
+  out.push(pointAlong(pts, (len - amount) / len));
   return out;
 }
 
@@ -95,33 +95,60 @@ function drawLines(group, tl) {
   }
 }
 
+function make(tag, cls, parent, text) {
+  const node = document.createElement(tag);
+  if (cls) node.className = cls;
+  if (text !== undefined) node.textContent = text;
+  if (parent) parent.appendChild(node);
+  return node;
+}
+
 function button(label, cls, parent) {
-  const b = document.createElement('button');
+  const b = make('button', cls, parent, label);
   b.type = 'button';
-  b.className = cls;
-  b.textContent = label;
-  parent.appendChild(b);
   return b;
 }
 
-export function mountPlayer(container, play) {
+// The always-visible summary: what the play is for and where the shot comes from.
+function buildBrief(parent, play) {
+  const rows = [
+    ['Goal', play.goal],
+    ['Options', play.options],
+    ['Use against', play.versus],
+  ].filter(([, text]) => text);
+  if (!rows.length) return;
+  const brief = make('dl', 'bp-brief', parent);
+  for (const [label, text] of rows) {
+    make('dt', '', brief, label);
+    make('dd', '', brief, text);
+  }
+}
+
+export function mountPlayer(container, rawPlay) {
+  const play = normalizePlay(rawPlay);
   const timelines = buildPlay(play);
   const last = timelines.length - 1;
-  const state = { step: 0, t: 0, playing: false, whole: false, speed: 0 };
+  const state = { step: 0, t: 0, playing: false, whole: false, auto: false, speed: 0 };
+  // Autoplay runs only until the viewer touches a control. After that the
+  // play moves only when they ask it to.
+  let touched = false;
+  const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  const takeOver = () => {
+    touched = true;
+    state.auto = false;
+  };
 
   container.classList.add('bp-player');
+  container.classList.toggle('bp-full', play.court === 'full');
   container.replaceChildren();
-  const title = document.createElement('h2');
-  title.className = 'bp-title';
-  title.textContent = play.name;
-  container.appendChild(title);
 
-  const svgNS = 'http://www.w3.org/2000/svg';
-  const svg = document.createElementNS(svgNS, 'svg');
-  svg.setAttribute('class', 'bp-court');
-  svg.setAttribute('role', 'img');
-  svg.setAttribute('aria-label', `${play.name}, animated diagram`);
-  container.appendChild(svg);
+  const head = make('header', 'bp-head', container);
+  make('h2', 'bp-title', head, play.name);
+  if (play.subtitle) make('p', 'bp-subtitle', head, play.subtitle);
+
+  const stage = make('div', 'bp-stage', container);
+  const svg = el('svg', { class: 'bp-court', role: 'img', 'aria-label': `${play.name}, animated diagram` });
+  stage.appendChild(svg);
   drawCourt(svg, play.court, play.level);
   const lines = el('g', { class: 'bp-lines' }, svg);
   const tokenLayer = el('g', {}, svg);
@@ -134,36 +161,32 @@ export function mountPlayer(container, play) {
     text.textContent = defense ? `X${id.slice(1)}` : id.slice(1);
     tokens[id] = g;
   }
-  const ball = el('circle', { r: 8, class: 'bp-ball' }, svg);
+  const ball = drawBall(svg);
 
-  // The step note is always part of the player; it is never optional.
-  const note = document.createElement('div');
-  note.className = 'bp-note';
-  note.setAttribute('aria-live', 'polite');
-  const noteLabel = document.createElement('strong');
-  const noteText = document.createElement('p');
-  note.append(noteLabel, noteText);
-  container.appendChild(note);
-
-  const dots = document.createElement('div');
-  dots.className = 'bp-dots';
-  const dotEls = timelines.map((_, i) => {
-    const b = button(String(i + 1), 'bp-dot', dots);
-    b.setAttribute('aria-label', `Step ${i + 1}`);
-    b.appendChild(document.createElement('i'));
-    b.addEventListener('click', () => playStep(i));
-    return b;
-  });
-  container.appendChild(dots);
-
-  const controls = document.createElement('div');
-  controls.className = 'bp-controls';
+  const controls = make('div', 'bp-controls', stage);
   const backBtn = button('Back', 'bp-btn', controls);
   const playBtn = button('Play all', 'bp-btn bp-primary', controls);
   const nextBtn = button('Next step', 'bp-btn', controls);
   const speedBtn = button('1×', 'bp-btn bp-speed', controls);
   speedBtn.setAttribute('aria-label', 'Animation speed');
-  container.appendChild(controls);
+
+  buildBrief(container, play);
+
+  // Every step's help text stays on screen; the current one is emphasised.
+  const stepList = make('ol', 'bp-steps', container);
+  const stepEls = play.steps.map((step, i) => {
+    const li = make('li', '', stepList);
+    const b = button('', 'bp-step', li);
+    make('span', 'bp-step-num', b, String(i + 1));
+    const text = make('span', 'bp-step-text', b, step.note || 'No note for this step.');
+    text.classList.toggle('bp-empty', !step.note);
+    make('i', '', b);
+    b.addEventListener('click', () => {
+      takeOver();
+      playStep(i);
+    });
+    return b;
+  });
 
   let shownStep = -1;
   function render() {
@@ -171,10 +194,6 @@ export function mountPlayer(container, play) {
     if (shownStep !== state.step) {
       shownStep = state.step;
       drawLines(lines, tl);
-      noteLabel.textContent = `Step ${state.step + 1} of ${timelines.length}`;
-      const text = play.steps[state.step].note;
-      noteText.textContent = text || 'No note for this step.';
-      noteText.classList.toggle('bp-empty', !text);
     }
     const frame = frameAt(tl, state.t);
     for (const [id, g] of Object.entries(tokens)) {
@@ -183,15 +202,14 @@ export function mountPlayer(container, play) {
       if (p) g.setAttribute('transform', `translate(${p.x.toFixed(1)} ${p.y.toFixed(1)})`);
     }
     ball.style.display = frame.ball ? '' : 'none';
-    if (frame.ball) {
-      ball.setAttribute('cx', frame.ball.x.toFixed(1));
-      ball.setAttribute('cy', frame.ball.y.toFixed(1));
-    }
-    dotEls.forEach((dot, i) => {
-      dot.classList.toggle('is-current', i === state.step);
-      dot.classList.toggle('is-done', i < state.step);
-      const fill = i < state.step ? 1 : i === state.step ? Math.min(state.t / tl.duration, 1) : 0;
-      dot.firstElementChild.style.transform = `scaleX(${fill})`;
+    if (frame.ball) ball.setAttribute('transform', `translate(${frame.ball.x.toFixed(1)} ${frame.ball.y.toFixed(1)})`);
+    stepEls.forEach((b, i) => {
+      const current = i === state.step;
+      b.classList.toggle('is-current', current);
+      b.classList.toggle('is-done', i < state.step);
+      if (current) b.setAttribute('aria-current', 'step');
+      else b.removeAttribute('aria-current');
+      b.lastElementChild.style.transform = `scaleX(${current ? Math.min(state.t / tl.duration, 1) : 0})`;
     });
     playBtn.textContent = state.playing ? 'Pause' : 'Play all';
     nextBtn.disabled = state.step === last && state.t >= tl.duration;
@@ -205,10 +223,14 @@ export function mountPlayer(container, play) {
     lastTime = now;
     const tl = timelines[state.step];
     state.t += dt;
-    const limit = tl.duration + (state.whole && state.step < last ? STEP_GAP : 0);
+    const more = state.whole && state.step < last;
+    const limit = tl.duration + (more ? STEP_GAP : state.auto ? LOOP_GAP : 0);
     if (state.t >= limit) {
-      if (state.whole && state.step < last) {
+      if (more) {
         state.step += 1;
+        state.t = 0;
+      } else if (state.auto) {
+        state.step = 0;
         state.t = 0;
       } else {
         state.t = tl.duration;
@@ -236,8 +258,29 @@ export function mountPlayer(container, play) {
     state.whole = false;
     start();
   }
+  // Called by the page as the play scrolls into or out of the middle of the screen.
+  function setCentered(centered) {
+    if (touched || reducedMotion) return;
+    if (centered && !state.auto) {
+      state.auto = true;
+      state.whole = true;
+      start();
+    } else if (!centered && state.auto) {
+      state.auto = false;
+      stop();
+    }
+  }
+  function seek(step, t = 0) {
+    takeOver();
+    cancelAnimationFrame(raf);
+    state.playing = false;
+    state.step = Math.min(Math.max(step, 0), last);
+    state.t = Math.min(Math.max(t, 0), timelines[state.step].duration);
+    render();
+  }
 
   playBtn.addEventListener('click', () => {
+    takeOver();
     if (state.playing) return stop();
     if (state.step === last && state.t >= timelines[last].duration) {
       state.step = 0;
@@ -248,6 +291,7 @@ export function mountPlayer(container, play) {
   });
   // Next: run the step on screen if it has not finished, otherwise the next one.
   nextBtn.addEventListener('click', () => {
+    takeOver();
     const finished = state.t >= timelines[state.step].duration;
     if (finished && state.step < last) playStep(state.step + 1);
     else if (!finished) {
@@ -257,23 +301,17 @@ export function mountPlayer(container, play) {
   });
   // Back: rewind this step, or go to the start of the previous one.
   backBtn.addEventListener('click', () => {
+    takeOver();
     if (state.t === 0 && state.step > 0) state.step -= 1;
     state.t = 0;
     stop();
   });
   speedBtn.addEventListener('click', () => {
+    takeOver();
     state.speed = (state.speed + 1) % SPEEDS.length;
     speedBtn.textContent = `${SPEEDS[state.speed]}×`;
   });
 
-  function seek(step, t = 0) {
-    cancelAnimationFrame(raf);
-    state.playing = false;
-    state.step = Math.min(Math.max(step, 0), last);
-    state.t = Math.min(Math.max(t, 0), timelines[state.step].duration);
-    render();
-  }
-
   render();
-  return { state, timelines, playStep, seek, stop };
+  return { state, stage, timelines, playStep, seek, setCentered, stop };
 }

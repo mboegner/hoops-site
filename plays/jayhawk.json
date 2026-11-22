@@ -1,0 +1,46 @@
+{
+  "name": "Jayhawk",
+  "subtitle": "5-out motion: pass, cut, fill",
+  "court": "half",
+  "level": "youth",
+  "goal": "Keep the floor spread and keep moving: pass, cut, fill.",
+  "options": "Best: the cutter for a layup. Next: attack the open lane the cutter leaves behind.",
+  "start": { "o1": [260, 345], "o2": [445, 240], "o3": [75, 240], "o4": [478, 72], "o5": [42, 72] },
+  "ball": "o1",
+  "steps": [
+    {
+      "note": "Pass: 1 passes to 2.",
+      "actions": [
+        { "type": "pass", "from": "o1", "to": "o2" }
+      ]
+    },
+    {
+      "note": "Cut: 1 cuts hard to the rim, hands ready for the ball back.",
+      "actions": [
+        { "type": "cut", "player": "o1", "path": [[305, 220], [272, 112]] }
+      ]
+    },
+    {
+      "note": "Fill: 3 fills the top, 5 fills the wing, and 1 goes out to the open corner.",
+      "actions": [
+        { "type": "cut", "player": "o3", "path": [[150, 325], [260, 345]] },
+        { "type": "cut", "player": "o5", "path": [[75, 240]] },
+        { "type": "cut", "player": "o1", "path": [[150, 85], [42, 72]] }
+      ]
+    },
+    {
+      "note": "Same thing again: 2 passes to 3, then cuts to the rim.",
+      "actions": [
+        { "type": "pass", "from": "o2", "to": "o3" },
+        { "type": "cut", "player": "o2", "path": [[350, 170], [262, 112]] }
+      ]
+    },
+    {
+      "note": "Fill again: 4 fills the wing and 2 goes out to the corner. Keep it going.",
+      "actions": [
+        { "type": "cut", "player": "o4", "path": [[445, 240]] },
+        { "type": "cut", "player": "o2", "path": [[385, 88], [478, 72]] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "Tiger 5",
+  "subtitle": "Wing double screen away",
+  "court": "half",
+  "level": "youth",
+  "goal": "Free a shooter with two screens away from the ball.",
+  "options": "Best: 3 off the double screen. Next: 4 or 5 rolling to the rim.",
+  "start": { "o1": [260, 345], "o2": [445, 240], "o3": [75, 240], "o4": [320, 230], "o5": [200, 230] },
+  "ball": "o1",
+  "steps": [
+    {
+      "note": "1 passes to 2 on the wing.",
+      "actions": [
+        { "type": "pass", "from": "o1", "to": "o2" }
+      ]
+    },
+    {
+      "note": "4 and 5 set a double screen for 3. 1 cuts through to the far corner.",
+      "actions": [
+        { "type": "screen", "player": "o5", "path": [[128, 262]] },
+        { "type": "screen", "player": "o4", "path": [[250, 270], [165, 268]] },
+        { "type": "cut", "player": "o1", "path": [[265, 180], [130, 95], [42, 72]] }
+      ]
+    },
+    {
+      "note": "3 curls off the double screen to the top. 2 hits 3 for the shot.",
+      "actions": [
+        { "type": "cut", "player": "o3", "path": [[130, 318], [250, 335]] },
+        { "type": "pass", "from": "o2", "to": "o3" }
+      ]
+    }
+  ]
+}

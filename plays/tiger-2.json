@@ -1,0 +1,39 @@
+{
+  "name": "Tiger 2",
+  "subtitle": "UCLA cut",
+  "court": "half",
+  "level": "youth",
+  "goal": "Get the point guard a layup by cutting off the high-post screen.",
+  "options": "Best: 1 on the UCLA cut. Next: 5 off the pick. Safety: 3 at the top to reverse it.",
+  "start": { "o1": [260, 345], "o2": [445, 240], "o3": [75, 240], "o4": [320, 230], "o5": [200, 230] },
+  "ball": "o1",
+  "steps": [
+    {
+      "note": "1 passes to 2 on the wing.",
+      "actions": [
+        { "type": "pass", "from": "o1", "to": "o2" }
+      ]
+    },
+    {
+      "note": "1 cuts hard off 4's shoulder to the block. That is the UCLA cut. 2 looks for the layup pass.",
+      "actions": [
+        { "type": "cut", "player": "o1", "path": [[362, 232], [325, 118]] }
+      ]
+    },
+    {
+      "note": "4 goes to pick away for 5. 3 fills the top. 1 clears out to the far wing.",
+      "actions": [
+        { "type": "screen", "player": "o4", "path": [[237, 232]] },
+        { "type": "cut", "player": "o3", "path": [[150, 325], [255, 350]] },
+        { "type": "cut", "player": "o1", "path": [[190, 100], [75, 240]] }
+      ]
+    },
+    {
+      "note": "5 comes off the pick to the ball-side elbow. 4 comes back and dives to the block.",
+      "actions": [
+        { "type": "cut", "player": "o5", "path": [[245, 280], [322, 240]] },
+        { "type": "cut", "player": "o4", "path": [[275, 170], [325, 118]] }
+      ]
+    }
+  ]
+}

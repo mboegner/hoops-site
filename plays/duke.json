@@ -1,0 +1,43 @@
+{
+  "name": "Duke",
+  "subtitle": "Zone offense: screen the top, read and react",
+  "court": "half",
+  "level": "youth",
+  "goal": "Screen the top of the zone to get 4-on-3 on one side. Read it, don't force it.",
+  "options": "1 reads: pull-up, 2 in the corner, 5 in the short corner, then 4 on the roll. Nothing? Reverse to 3.",
+  "versus": "1-2-2, 3-2 and 2-3 zones",
+  "start": {
+    "o1": [260, 352], "o2": [445, 240], "o3": [75, 240], "o4": [328, 112], "o5": [192, 112],
+    "x1": [260, 300], "x2": [160, 228], "x3": [362, 222], "x4": [228, 152], "x5": [292, 152]
+  },
+  "ball": "o1",
+  "steps": [
+    {
+      "note": "4 comes up and screens the defender on the ball. Stand still: no wiggling. Let 1 set it up.",
+      "actions": [
+        { "type": "screen", "player": "o4", "path": [[325, 215], [295, 304]] }
+      ]
+    },
+    {
+      "note": "1 dribbles off the screen. That pushes 2 to the corner and pulls 3 to the top. 5 cuts right away across the lane to the short corner. 4 holds the screen for a two-count.",
+      "actions": [
+        { "type": "dribble", "player": "o1", "path": [[335, 338], [425, 265]] },
+        { "type": "cut", "player": "o2", "path": [[478, 72]] },
+        { "type": "cut", "player": "o3", "path": [[150, 325], [245, 355]] },
+        { "type": "cut", "player": "o5", "path": [[260, 98], [392, 80]] }
+      ]
+    },
+    {
+      "note": "After the two-count, 4 rolls to the elbow. Now it is 4-on-3. 1 does not drive all the way in: pull-up, 2 in the corner, 5 in the short corner, or 4 on the roll.",
+      "actions": [
+        { "type": "cut", "player": "o4", "path": [[322, 240]] }
+      ]
+    },
+    {
+      "note": "Nothing there? Reverse the ball to 3 and run it again on the other side.",
+      "actions": [
+        { "type": "pass", "from": "o1", "to": "o3" }
+      ]
+    }
+  ]
+}

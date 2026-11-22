@@ -1,8 +1,41 @@
 {
-  "plays": [
+  "groups": [
     {
-      "slug": "box-and-1",
-      "name": "Box and 1: chaser and box"
+      "title": "Tiger",
+      "subtitle": "1-4 high offense",
+      "plays": [
+        { "slug": "tiger-1", "label": "Tiger 1" },
+        { "slug": "tiger-2", "label": "Tiger 2" },
+        { "slug": "tiger-3", "label": "Tiger 3" },
+        { "slug": "tiger-4", "label": "Tiger 4" },
+        { "slug": "tiger-5", "label": "Tiger 5" }
+      ]
+    },
+    {
+      "title": "Jayhawk",
+      "subtitle": "5-out motion",
+      "plays": [
+        { "slug": "jayhawk", "label": "Pass, cut, fill" }
+      ]
+    },
+    {
+      "title": "Zone offense",
+      "subtitle": "Half-court zones",
+      "plays": [
+        { "slug": "arizona", "label": "Arizona" },
+        { "slug": "duke", "label": "Duke" },
+        { "slug": "carolina", "label": "Carolina" },
+        { "slug": "carolina-1", "label": "Carolina 1" }
+      ]
+    },
+    {
+      "title": "4-Across",
+      "subtitle": "Press break",
+      "plays": [
+        { "slug": "4-across-5", "label": "Ball to 5" },
+        { "slug": "4-across-3", "label": "Ball to 3" },
+        { "slug": "4-across-screen", "label": "Screen for 1" }
+      ]
     }
   ]
 }

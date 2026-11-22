@@ -1,0 +1,43 @@
+{
+  "name": "Arizona",
+  "subtitle": "Zone offense: swing it, bigs exchange, overload",
+  "court": "half",
+  "level": "youth",
+  "goal": "Move the zone with the pass, then overload one side.",
+  "options": "Best: 2 in the corner after the reversal. Next: 5 at the elbow or 4 on the block.",
+  "versus": "2-3 zone",
+  "start": {
+    "o1": [260, 345], "o2": [445, 240], "o3": [75, 240], "o4": [260, 226], "o5": [195, 112],
+    "x1": [205, 282], "x2": [315, 282], "x3": [125, 140], "x4": [395, 140], "x5": [260, 155]
+  },
+  "ball": "o1",
+  "steps": [
+    {
+      "note": "1 passes to 2. On the pass, 4 slides to the ball-side elbow and 5 cuts to the ball-side block.",
+      "actions": [
+        { "type": "pass", "from": "o1", "to": "o2" },
+        { "type": "cut", "player": "o4", "path": [[322, 230]] },
+        { "type": "cut", "player": "o5", "path": [[260, 100], [328, 115]] }
+      ]
+    },
+    {
+      "note": "Reverse it: 2 passes back to 1.",
+      "actions": [
+        { "type": "pass", "from": "o2", "to": "o1" }
+      ]
+    },
+    {
+      "note": "1 swings it to 3. The bigs exchange: 4 dives to the new ball-side block and 5 flashes to the elbow. 2 bends along the baseline to the opposite corner.",
+      "actions": [
+        { "type": "pass", "from": "o1", "to": "o3" },
+        { "type": "cut", "player": "o4", "path": [[290, 165], [192, 115]] },
+        { "type": "cut", "player": "o5", "path": [[250, 150], [198, 232]] },
+        { "type": "cut", "player": "o2", "path": [[430, 110], [260, 58], [42, 72]] }
+      ]
+    },
+    {
+      "note": "Overload! 3 has 2 in the corner, 5 at the elbow and 4 on the block. Find the open one.",
+      "actions": []
+    }
+  ]
+}

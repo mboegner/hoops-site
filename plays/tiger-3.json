@@ -1,0 +1,37 @@
+{
+  "name": "Tiger 3",
+  "subtitle": "Wing pick and roll",
+  "court": "half",
+  "level": "youth",
+  "goal": "Make it 2-on-1 with a ball screen on the wing.",
+  "options": "Best: 2 attacking off the screen. Next: 4 on the roll. Nothing? Reverse it and try again.",
+  "start": { "o1": [260, 345], "o2": [445, 240], "o3": [75, 240], "o4": [320, 230], "o5": [200, 230] },
+  "ball": "o1",
+  "steps": [
+    {
+      "note": "1 passes to 2 on the wing.",
+      "actions": [
+        { "type": "pass", "from": "o1", "to": "o2" }
+      ]
+    },
+    {
+      "note": "4 sprints out and screens 2's defender. Run like a boss!",
+      "actions": [
+        { "type": "screen", "player": "o4", "path": [[408, 256]] }
+      ]
+    },
+    {
+      "note": "2 dribbles off the screen toward the middle. 4 rolls to the basket.",
+      "actions": [
+        { "type": "dribble", "player": "o2", "path": [[412, 300], [338, 268]] },
+        { "type": "cut", "player": "o4", "path": [[372, 180], [300, 110]] }
+      ]
+    },
+    {
+      "note": "Nothing there? Reverse the ball and try again on the other side.",
+      "actions": [
+        { "type": "pass", "from": "o2", "to": "o1" }
+      ]
+    }
+  ]
+}

@@ -4,12 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
-  <title>Playbook</title>
+  <title>Playbook: ATB 6A "Hounds"</title>
   <link rel="stylesheet" href="src/styles.css">
 </head>
 <body>
   <main class="page">
-    <h1>Playbook</h1>
+    <h1>Playbook: ATB 6A "Hounds"</h1>
+    <nav class="menu" id="menu" aria-label="Jump to a play"></nav>
     <p class="status" id="status">Loading plays…</p>
     <div id="plays"></div>
   </main>
@@ -17,23 +18,82 @@
     import { mountPlayer } from './src/player.js';
 
     const status = document.getElementById('status');
-    const list = document.getElementById('plays');
+    const menu = document.getElementById('menu');
+    const feed = document.getElementById('plays');
+    const players = new Map(); // slug -> player
+
+    function make(tag, cls, parent, text) {
+      const node = document.createElement(tag);
+      if (cls) node.className = cls;
+      if (text !== undefined) node.textContent = text;
+      if (parent) parent.appendChild(node);
+      return node;
+    }
+
+    function groupTitle(parent, group) {
+      const title = make('h2', '', parent, group.title);
+      if (group.subtitle) make('small', '', title, group.subtitle);
+    }
+
+    // Autoplay the one play whose court sits in the middle of the screen.
+    // Each player ignores this once the viewer has pressed one of its buttons.
+    let queued = false;
+    function updateCentered() {
+      queued = false;
+      const top = innerHeight * 0.25;
+      const bottom = innerHeight * 0.75;
+      let best = null;
+      let bestOverlap = 40; // px of court that must be inside the middle band
+      for (const player of players.values()) {
+        const rect = player.stage.getBoundingClientRect();
+        const overlap = Math.min(rect.bottom, bottom) - Math.max(rect.top, top);
+        if (overlap > bestOverlap) {
+          best = player;
+          bestOverlap = overlap;
+        }
+      }
+      for (const player of players.values()) player.setCentered(player === best);
+    }
+    function queueUpdate() {
+      if (!queued) {
+        queued = true;
+        requestAnimationFrame(updateCentered);
+      }
+    }
+
     try {
       const index = await (await fetch('plays/index.json')).json();
-      // ?play=<slug> shows one play; adding &step=2 opens it on that step
-      // (&t=<seconds> picks a moment inside the step).
-      const query = new URLSearchParams(location.search);
-      const only = query.get('play');
-      const files = index.plays.filter((p) => !only || p.slug === only);
-      for (const entry of files) {
-        const play = await (await fetch(`plays/${entry.slug}.json`)).json();
-        const figure = document.createElement('section');
-        list.appendChild(figure);
-        const player = mountPlayer(figure, play);
-        if (only && query.has('step')) player.seek(Number(query.get('step')) - 1, Number(query.get('t') || 0));
+      const entries = index.groups.flatMap((g) => g.plays);
+      const loaded = await Promise.all(entries.map((e) => fetch(`plays/${e.slug}.json`).then((r) => r.json())));
+      const bySlug = new Map(entries.map((e, i) => [e.slug, loaded[i]]));
+
+      for (const group of index.groups) {
+        const row = make('div', 'menu-group', menu);
+        groupTitle(row, group);
+        const section = make('section', 'play-group', feed);
+        groupTitle(section, group);
+        for (const entry of group.plays) {
+          const chip = make('a', 'chip', row, entry.label);
+          chip.href = `#${entry.slug}`;
+          const holder = make('article', '', section);
+          holder.id = entry.slug;
+          players.set(entry.slug, mountPlayer(holder, bySlug.get(entry.slug)));
+        }
       }
       status.remove();
-      if (!files.length) list.textContent = 'No plays found.';
+
+      // Deep links: #<slug> or ?play=<slug> jumps to a play; with ?play=,
+      // &step=2 opens it on that step and &t=<seconds> picks a moment in it.
+      const query = new URLSearchParams(location.search);
+      const wanted = query.get('play') || location.hash.slice(1);
+      if (players.has(wanted)) {
+        document.getElementById(wanted).scrollIntoView();
+        if (query.has('step')) players.get(wanted).seek(Number(query.get('step')) - 1, Number(query.get('t') || 0));
+      }
+
+      addEventListener('scroll', queueUpdate, { passive: true });
+      addEventListener('resize', queueUpdate);
+      queueUpdate();
     } catch (err) {
       status.textContent = `Could not load plays: ${err.message}`;
     }

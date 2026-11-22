@@ -223,6 +223,39 @@ export function frameAt(tl, time) {
   return { pos, ball, holder };
 }
 
+/**
+ * Fill in what hand-written plays leave out. A play may give only `start`
+ * (positions before step 1) and `ball` (first holder); each step's `pos` and
+ * `holder` are then carried forward from the previous step's actions, and a
+ * path may list just its waypoints and end point. Plays that already spell
+ * out `pos` on every step (the importer's output) pass through unchanged.
+ */
+export function normalizePlay(play) {
+  const first = play.start || play.steps[0]?.pos || {};
+  const order = (id) => (id[0] === 'x' ? 100 : 0) + Number(id.slice(1));
+  const players = play.players || Object.keys(first).sort((a, b) => order(a) - order(b));
+  let pos = Object.fromEntries(Object.entries(first).map(([id, p]) => [id, pt(p)]));
+  let holder = play.ball || null;
+  const steps = play.steps.map((raw) => {
+    const here = raw.pos ? stepPositions(raw) : { ...pos };
+    const actions = (raw.actions || []).map((a) => {
+      if (!a.path) return a;
+      const path = a.path.map(pt);
+      if (here[a.player] && dist(path[0], here[a.player]) > 1) path.unshift(here[a.player]);
+      return { ...a, path };
+    });
+    const step = { ...raw, actions, pos: here, holder: raw.holder !== undefined ? raw.holder : holder };
+    pos = { ...here };
+    for (const a of actions) {
+      if (MOVE_TYPES.includes(a.type) && a.path?.length) pos[a.player] = a.path[a.path.length - 1];
+    }
+    holder = endHolder(step);
+    return step;
+  });
+  return { ...play, players, steps };
+}
+
+/** Timelines for every step. Expects a normalized play. */
 export function buildPlay(play) {
   return play.steps.map((_, i) => buildStep(play, i));
 }

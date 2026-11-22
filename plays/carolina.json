@@ -1,0 +1,41 @@
+{
+  "name": "Carolina",
+  "subtitle": "Zone offense: 2-1-2, flood the corner",
+  "court": "half",
+  "level": "youth",
+  "goal": "Get the ball to the corner and flood that side for a 4-on-3.",
+  "options": "Best: 5 on the block or 3 at the elbow. Safety: back out to 2, then reverse through 1.",
+  "versus": "1-3-1 zone, including when we get trapped",
+  "start": {
+    "o1": [185, 342], "o2": [335, 342], "o3": [42, 72], "o4": [478, 72], "o5": [260, 240],
+    "x1": [260, 298], "x2": [150, 222], "x3": [372, 222], "x4": [260, 102], "x5": [260, 188]
+  },
+  "ball": "o1",
+  "steps": [
+    {
+      "note": "1 passes to 2.",
+      "actions": [
+        { "type": "pass", "from": "o1", "to": "o2" }
+      ]
+    },
+    {
+      "note": "2 dribbles to the wing. 1 fills backwards behind the ball for the reversal. No long passes across the top.",
+      "actions": [
+        { "type": "dribble", "player": "o2", "path": [[438, 258]] },
+        { "type": "cut", "player": "o1", "path": [[305, 378]] }
+      ]
+    },
+    {
+      "note": "2 passes to 4 in the corner. On that pass, 5 dives from the nail to the ball-side block and 3 flashes to the ball-side elbow.",
+      "actions": [
+        { "type": "pass", "from": "o2", "to": "o4" },
+        { "type": "cut", "player": "o5", "path": [[305, 180], [328, 118]] },
+        { "type": "cut", "player": "o3", "path": [[150, 150], [322, 236]] }
+      ]
+    },
+    {
+      "note": "4-on-3. Corner, don't panic: 5 on the block, 3 at the elbow, or back out to 2 on the wing.",
+      "actions": []
+    }
+  ]
+}
