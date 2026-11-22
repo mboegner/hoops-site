@@ -1,0 +1,50 @@
+{
+  "name": "Viktor Lazlo",
+  "subtitle": "Sideline inbound play",
+  "court": "full",
+  "level": "youth",
+  "goal": "Get an easy basket straight off a sideline inbound.",
+  "options": "First: a short, quick pass to 1 at full speed. Next: 4 coming to the sideline, or 2 in the backcourt.",
+  "start": { "o3": [-2, 460], "o1": [70, 560], "o2": [70, 360], "o5": [125, 460], "o4": [245, 460] },
+  "ball": "o3",
+  "steps": [
+    {
+      "note": "3 inbounds at half court. 1 and 2 face each other along the sideline. 5 and 4 are level with 3 on our half of the court. On \"break\", 2 comes to 1 and sets a screen.",
+      "actions": [
+        { "type": "screen", "player": "o2", "path": [[92, 524]] }
+      ]
+    },
+    {
+      "note": "1 explodes off the screen on the sideline side. First option: a short, quick pass from 3 as 1 goes by at full speed.",
+      "actions": [
+        { "type": "cut", "player": "o1", "path": [[38, 525], [42, 395]] },
+        { "type": "look", "from": "o3", "to": "o1" }
+      ]
+    },
+    {
+      "note": "1 keeps going down the court on the fast break for the layup.",
+      "actions": [
+        { "type": "cut", "player": "o1", "path": [[55, 280], [245, 115]] }
+      ]
+    },
+    {
+      "note": "The big closer to the inbounder screens away: 5 screens for 4.",
+      "actions": [
+        { "type": "screen", "player": "o5", "path": [[208, 462]] }
+      ]
+    },
+    {
+      "note": "4 comes off the screen toward the sideline to receive the ball. 2 stays in the backcourt.",
+      "actions": [
+        { "type": "cut", "player": "o4", "path": [[205, 405], [150, 410], [100, 432]] }
+      ]
+    },
+    {
+      "note": "If the quick pass to 1 was not there, 3 reads it: 4 near the sideline or 2 in the backcourt.",
+      "actions": [
+        { "type": "look", "from": "o3", "to": "o4" },
+        { "type": "look", "from": "o3", "to": "o2" }
+      ]
+    }
+  ]
+}

@@ -30,7 +30,10 @@
     {
       "note": "After the two-count, 4 rolls to the elbow. Now it is 4-on-3. 1 does not drive all the way in: pull-up, 2 in the corner, 5 in the short corner, or 4 on the roll.",
       "actions": [
-        { "type": "cut", "player": "o4", "path": [[322, 240]] }
+        { "type": "cut", "player": "o4", "path": [[322, 240]] },
+        { "type": "look", "from": "o1", "to": "o2" },
+        { "type": "look", "from": "o1", "to": "o5" },
+        { "type": "look", "from": "o1", "to": "o4" }
       ]
     },
     {

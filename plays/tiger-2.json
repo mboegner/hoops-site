@@ -18,7 +18,8 @@
       "note": "4 screens for 1. 1 cuts hard off 4's shoulder to the block. That is the UCLA cut. 2 looks for the layup pass.",
       "actions": [
         { "type": "screen", "player": "o4", "path": [[328, 250]] },
-        { "type": "cut", "player": "o1", "path": [[437, 240], [325, 118]] }
+        { "type": "cut", "player": "o1", "path": [[437, 240], [325, 118]] },
+        { "type": "look", "from": "o2", "to": "o1" }
       ]
     },
     {
@@ -32,14 +33,16 @@
     {
       "note": "5 curls off the screen and down the right side of the lane, looking for the pass inside.",
       "actions": [
-        { "type": "cut", "player": "o5", "path": [[240, 300], [300, 240], [305, 135]] }
+        { "type": "cut", "player": "o5", "path": [[240, 300], [300, 240], [305, 135]] },
+        { "type": "look", "from": "o2", "to": "o5" }
       ]
     },
     {
       "note": "4 returns to the elbow for a pass and the elbow jump shot. 5 goes back to the other elbow. We are back in our starting spots and can reverse it from here.",
       "actions": [
         { "type": "cut", "player": "o4", "path": [[320, 230]] },
-        { "type": "cut", "player": "o5", "path": [[262, 165], [200, 230]] }
+        { "type": "cut", "player": "o5", "path": [[262, 165], [200, 230]] },
+        { "type": "look", "from": "o2", "to": "o4" }
       ]
     }
   ]

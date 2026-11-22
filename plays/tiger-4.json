@@ -17,7 +17,8 @@
     {
       "note": "41: 2 cuts backdoor. 4 looks for the pass.",
       "actions": [
-        { "type": "cut", "player": "o2", "path": [[435, 175], [305, 105]] }
+        { "type": "cut", "player": "o2", "path": [[435, 175], [305, 105]] },
+        { "type": "look", "from": "o4", "to": "o2" }
       ]
     },
     {
@@ -30,7 +31,8 @@
     {
       "note": "3 cuts backdoor off 5's screen. 4 hits the open cutter, or drives or shoots.",
       "actions": [
-        { "type": "cut", "player": "o3", "path": [[85, 170], [215, 105]] }
+        { "type": "cut", "player": "o3", "path": [[85, 170], [215, 105]] },
+        { "type": "look", "from": "o4", "to": "o3" }
       ]
     }
   ]

@@ -29,6 +29,13 @@
       ]
     },
     {
+      "title": "Bulldog",
+      "subtitle": "Flex offense",
+      "plays": [
+        { "slug": "bulldog", "label": "Flex motion" }
+      ]
+    },
+    {
       "title": "Press break",
       "subtitle": "Full court",
       "plays": [
@@ -40,13 +47,15 @@
     {
       "title": "Sideline inbounds",
       "plays": [
-        { "slug": "victor-lazlo", "label": "Victor Lazlo" },
+        { "slug": "viktor-lazlo", "label": "Viktor Lazlo" },
         { "slug": "supernova", "label": "Supernova" }
       ]
     },
     {
       "title": "Baseline inbounds",
-      "plays": []
+      "plays": [
+        { "slug": "red-sea", "label": "Red Sea" }
+      ]
     }
   ]
 }

@@ -35,7 +35,11 @@
     },
     {
       "note": "4-on-3. The corner stays calm and reads it: 5 on the block, 3 at the elbow, or back out to 2 on the wing.",
-      "actions": []
+      "actions": [
+        { "type": "look", "from": "o4", "to": "o5" },
+        { "type": "look", "from": "o4", "to": "o3" },
+        { "type": "look", "from": "o4", "to": "o2" }
+      ]
     }
   ]
 }

@@ -1,0 +1,37 @@
+{
+  "name": "Red Sea",
+  "subtitle": "Baseline inbound play",
+  "court": "half",
+  "level": "youth",
+  "goal": "Everyone scatters out of the stack, and 1 runs through the open space for a layup.",
+  "options": "First: 1 streaking to the basket. Backup: 4 in the strong-side corner.",
+  "start": { "o3": [332, 22], "o5": [304, 116], "o4": [344, 116], "o2": [322, 182], "o1": [322, 300] },
+  "ball": "o3",
+  "steps": [
+    {
+      "note": "3 inbounds under the basket. In one line in front of 3: 4 and 5 on the block, 2 at the second lane mark, and 1 at the top of the key.",
+      "actions": []
+    },
+    {
+      "note": "On \"break\", 4 and 5 split in opposite directions: 4 to the corner on our side, 5 to the short corner on the far side. 2 goes up and screens for 1 just above the elbow.",
+      "actions": [
+        { "type": "cut", "player": "o4", "path": [[478, 72]] },
+        { "type": "cut", "player": "o5", "path": [[220, 100], [130, 78]] },
+        { "type": "screen", "player": "o2", "path": [[318, 262]] }
+      ]
+    },
+    {
+      "note": "1 streaks off the screen straight down the line of the stack to the basket, into the space everyone just left.",
+      "actions": [
+        { "type": "cut", "player": "o1", "path": [[374, 262], [322, 170], [298, 112]] }
+      ]
+    },
+    {
+      "note": "3 reads it: 1 at the basket for the layup first, then 4 in the corner.",
+      "actions": [
+        { "type": "look", "from": "o3", "to": "o1" },
+        { "type": "look", "from": "o3", "to": "o4" }
+      ]
+    }
+  ]
+}

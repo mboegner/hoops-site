@@ -41,6 +41,16 @@
       "actions": [
         { "type": "pass", "from": "o3", "to": "o4" }
       ]
+    },
+    {
+      "note": "Everyone shifts to stay connected: 2 moves up toward the left sideline, 1 moves up to the middle of the court, and 5 comes in a little on the right.",
+      "actions": [
+        { "type": "cut", "player": "o2", "path": [[110, 420]] },
+        { "type": "cut", "player": "o1", "path": [[270, 440]] },
+        { "type": "cut", "player": "o5", "path": [[410, 650]] },
+        { "type": "look", "from": "o4", "to": "o2" },
+        { "type": "look", "from": "o4", "to": "o1" }
+      ]
     }
   ]
 }
