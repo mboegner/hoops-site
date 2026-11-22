@@ -87,6 +87,7 @@ body {
   cursor: pointer;
 }
 .chip:hover { border-color: var(--accent); }
+.menu-empty { align-self: center; color: var(--muted); font-size: 0.9rem; font-style: italic; }
 
 /* ---------- feed ---------- */
 

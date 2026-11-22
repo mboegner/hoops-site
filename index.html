@@ -70,6 +70,10 @@
       for (const group of index.groups) {
         const row = make('div', 'menu-group', menu);
         groupTitle(row, group);
+        if (!group.plays.length) {
+          make('span', 'menu-empty', row, 'No plays yet');
+          continue;
+        }
         const section = make('section', 'play-group', feed);
         groupTitle(section, group);
         for (const entry of group.plays) {

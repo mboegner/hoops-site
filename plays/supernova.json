@@ -1,0 +1,34 @@
+{
+  "name": "Supernova",
+  "subtitle": "Sideline inbound play",
+  "court": "half",
+  "level": "youth",
+  "goal": "Start bunched up, then explode apart so somebody gets open fast.",
+  "options": "Pass to whoever gets open first. Come toward the ball: no long, risky passes.",
+  "start": { "o3": [-2, 300], "o1": [385, 245], "o2": [421, 245], "o4": [385, 281], "o5": [421, 281] },
+  "ball": "o3",
+  "steps": [
+    {
+      "note": "3 inbounds. 1, 2, 4 and 5 bunch up in a tight cluster on the far side of the court.",
+      "actions": []
+    },
+    {
+      "note": "On \"break\", everyone explodes out of the cluster in a different direction and works hard to get open. There are no set routes, but come toward the ball.",
+      "actions": [
+        { "type": "cut", "player": "o1", "path": [[300, 150], [130, 205]] },
+        { "type": "cut", "player": "o2", "path": [[440, 130], [262, 125]] },
+        { "type": "cut", "player": "o4", "path": [[330, 330], [205, 300]] },
+        { "type": "cut", "player": "o5", "path": [[400, 400], [120, 395]] }
+      ]
+    },
+    {
+      "note": "3 passes to whoever is open first.",
+      "actions": [
+        { "type": "look", "from": "o3", "to": "o1" },
+        { "type": "look", "from": "o3", "to": "o2" },
+        { "type": "look", "from": "o3", "to": "o4" },
+        { "type": "look", "from": "o3", "to": "o5" }
+      ]
+    }
+  ]
+}
