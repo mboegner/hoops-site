@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Playbook</title>
+  <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+  <main class="page">
+    <h1>Playbook</h1>
+    <p class="status" id="status">Loading plays…</p>
+    <div id="plays"></div>
+  </main>
+  <script type="module">
+    import { mountPlayer } from './src/player.js';
+
+    const status = document.getElementById('status');
+    const list = document.getElementById('plays');
+    try {
+      const index = await (await fetch('plays/index.json')).json();
+      // ?play=<slug> shows one play; adding &step=2 opens it on that step
+      // (&t=<seconds> picks a moment inside the step).
+      const query = new URLSearchParams(location.search);
+      const only = query.get('play');
+      const files = index.plays.filter((p) => !only || p.slug === only);
+      for (const entry of files) {
+        const play = await (await fetch(`plays/${entry.slug}.json`)).json();
+        const figure = document.createElement('section');
+        list.appendChild(figure);
+        const player = mountPlayer(figure, play);
+        if (only && query.has('step')) player.seek(Number(query.get('step')) - 1, Number(query.get('t') || 0));
+      }
+      status.remove();
+      if (!files.length) list.textContent = 'No plays found.';
+    } catch (err) {
+      status.textContent = `Could not load plays: ${err.message}`;
+    }
+  </script>
+</body>
+</html>

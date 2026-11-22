@@ -1,0 +1,404 @@
+{
+ "name": "Box and 1: chaser and box",
+ "court": "half",
+ "level": "youth",
+ "players": [
+  "o1",
+  "o2",
+  "o3",
+  "o4",
+  "o5",
+  "x1",
+  "x2",
+  "x3",
+  "x4",
+  "x5"
+ ],
+ "steps": [
+  {
+   "note": "O1 is the best scorer and X1 chases O1 everywhere. O1 cuts to the far wing, and X1 follows while staying between O1 and the ball.",
+   "holder": "o2",
+   "pos": {
+    "o1": [
+     260,
+     320
+    ],
+    "o2": [
+     430,
+     240
+    ],
+    "o3": [
+     40,
+     65
+    ],
+    "o4": [
+     480,
+     65
+    ],
+    "o5": [
+     185,
+     115
+    ],
+    "x1": [
+     290,
+     300
+    ],
+    "x2": [
+     240,
+     230
+    ],
+    "x3": [
+     395,
+     220
+    ],
+    "x4": [
+     215,
+     120
+    ],
+    "x5": [
+     320,
+     115
+    ]
+   },
+   "actions": [
+    {
+     "type": "cut",
+     "player": "o1",
+     "path": [
+      [
+       260,
+       320
+      ],
+      [
+       200,
+       280
+      ],
+      [
+       95,
+       240
+      ]
+     ]
+    },
+    {
+     "type": "cut",
+     "player": "x1",
+     "path": [
+      [
+       290,
+       300
+      ],
+      [
+       215,
+       265
+      ],
+      [
+       115,
+       225
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "note": "The box leaves O1 to X1. On the pass to the corner, X5 closes out, X4 slides to the ball-side block, X3 sinks into the gap, and X2 drops to the rim.",
+   "holder": "o2",
+   "pos": {
+    "o1": [
+     95,
+     240
+    ],
+    "o2": [
+     430,
+     240
+    ],
+    "o3": [
+     40,
+     65
+    ],
+    "o4": [
+     480,
+     65
+    ],
+    "o5": [
+     185,
+     115
+    ],
+    "x1": [
+     115,
+     225
+    ],
+    "x2": [
+     240,
+     230
+    ],
+    "x3": [
+     395,
+     220
+    ],
+    "x4": [
+     215,
+     120
+    ],
+    "x5": [
+     320,
+     115
+    ]
+   },
+   "actions": [
+    {
+     "type": "pass",
+     "from": "o2",
+     "to": "o4"
+    },
+    {
+     "type": "cut",
+     "player": "x5",
+     "path": [
+      [
+       320,
+       115
+      ],
+      [
+       445,
+       90
+      ]
+     ]
+    },
+    {
+     "type": "cut",
+     "player": "x3",
+     "path": [
+      [
+       395,
+       220
+      ],
+      [
+       385,
+       170
+      ]
+     ]
+    },
+    {
+     "type": "cut",
+     "player": "x4",
+     "path": [
+      [
+       215,
+       120
+      ],
+      [
+       315,
+       110
+      ]
+     ]
+    },
+    {
+     "type": "cut",
+     "player": "x2",
+     "path": [
+      [
+       240,
+       230
+      ],
+      [
+       235,
+       135
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "note": "The ball comes back to the wing and the box returns to its spots. O1 flashes toward the ball, and X1 beats O1 to the spot.",
+   "holder": "o4",
+   "pos": {
+    "o1": [
+     95,
+     240
+    ],
+    "o2": [
+     430,
+     240
+    ],
+    "o3": [
+     40,
+     65
+    ],
+    "o4": [
+     480,
+     65
+    ],
+    "o5": [
+     185,
+     115
+    ],
+    "x1": [
+     115,
+     225
+    ],
+    "x2": [
+     235,
+     135
+    ],
+    "x3": [
+     385,
+     170
+    ],
+    "x4": [
+     315,
+     110
+    ],
+    "x5": [
+     445,
+     90
+    ]
+   },
+   "actions": [
+    {
+     "type": "pass",
+     "from": "o4",
+     "to": "o2"
+    },
+    {
+     "type": "cut",
+     "player": "x5",
+     "path": [
+      [
+       445,
+       90
+      ],
+      [
+       320,
+       115
+      ]
+     ]
+    },
+    {
+     "type": "cut",
+     "player": "x3",
+     "path": [
+      [
+       385,
+       170
+      ],
+      [
+       395,
+       220
+      ]
+     ]
+    },
+    {
+     "type": "cut",
+     "player": "x4",
+     "path": [
+      [
+       315,
+       110
+      ],
+      [
+       215,
+       120
+      ]
+     ]
+    },
+    {
+     "type": "cut",
+     "player": "x2",
+     "path": [
+      [
+       235,
+       135
+      ],
+      [
+       240,
+       230
+      ]
+     ]
+    },
+    {
+     "type": "cut",
+     "player": "o1",
+     "path": [
+      [
+       95,
+       240
+      ],
+      [
+       200,
+       260
+      ],
+      [
+       300,
+       280
+      ]
+     ]
+    },
+    {
+     "type": "cut",
+     "player": "x1",
+     "path": [
+      [
+       115,
+       225
+      ],
+      [
+       220,
+       245
+      ],
+      [
+       330,
+       265
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "note": "X1 is still denying, so the offense has to find a shot from someone else.",
+   "holder": "o2",
+   "pos": {
+    "o1": [
+     300,
+     280
+    ],
+    "o2": [
+     430,
+     240
+    ],
+    "o3": [
+     40,
+     65
+    ],
+    "o4": [
+     480,
+     65
+    ],
+    "o5": [
+     185,
+     115
+    ],
+    "x1": [
+     330,
+     265
+    ],
+    "x2": [
+     240,
+     230
+    ],
+    "x3": [
+     395,
+     220
+    ],
+    "x4": [
+     215,
+     120
+    ],
+    "x5": [
+     320,
+     115
+    ]
+   },
+   "actions": []
+  }
+ ]
+}
