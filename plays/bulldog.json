@@ -42,9 +42,15 @@
       ]
     },
     {
-      "note": "Nothing there? 2 passes to 5 and we run the same motion the other way: 4 screens for 3, then 2 screens down for 4.",
+      "note": "Nothing there? It starts over on the other side: 2 passes to 5 at the other high elbow.",
       "actions": [
         { "type": "pass", "from": "o2", "to": "o5" }
+      ]
+    },
+    {
+      "note": "Same motion, opposite side: 4 steps out and sets the flex screen for 3. Next, 3 makes the flex cut and 2 screens down for 4.",
+      "actions": [
+        { "type": "screen", "player": "o4", "path": [[146, 106]] }
       ]
     }
   ]

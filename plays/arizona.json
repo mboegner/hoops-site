@@ -1,10 +1,10 @@
 {
   "name": "Arizona",
-  "subtitle": "Zone offense: swing it, bigs exchange, overload",
+  "subtitle": "Zone offense: swing it, bigs work the triangle, overload",
   "court": "half",
   "level": "youth",
-  "goal": "Move the zone with the pass, then overload one side.",
-  "options": "Best: 2 in the corner after the reversal. Next: 5 at the elbow or 4 on the block.",
+  "goal": "Move the zone with the pass while the bigs keep filling the open spot in the lane, then overload one side.",
+  "options": "Best: a big flashing into the spot the other one just left. After the reversal: 2 in the corner, 5 at the elbow, or 4 on the block.",
   "versus": "2-3 zone",
   "start": {
     "o1": [260, 345], "o2": [445, 240], "o3": [75, 240], "o4": [260, 226], "o5": [195, 112],
@@ -13,25 +13,32 @@
   "ball": "o1",
   "steps": [
     {
-      "note": "1 passes to 2. On the pass, 4 slides to the ball-side elbow and 5 cuts to the ball-side block.",
+      "note": "1 passes to 2. 5 cuts across the lane to the open block on the ball side.",
       "actions": [
         { "type": "pass", "from": "o1", "to": "o2" },
-        { "type": "cut", "player": "o4", "path": [[322, 230]] },
         { "type": "cut", "player": "o5", "path": [[260, 100], [328, 115]] }
       ]
     },
     {
-      "note": "Reverse it: 2 passes back to 1.",
+      "note": "4 dives to the block 5 just left. The bigs work a triangle: the two blocks and the middle of the free throw line. Always fill the spot your teammate just left.",
       "actions": [
-        { "type": "pass", "from": "o2", "to": "o1" }
+        { "type": "cut", "player": "o4", "path": [[192, 115]] },
+        { "type": "look", "from": "o2", "to": "o5" },
+        { "type": "look", "from": "o2", "to": "o4" }
       ]
     },
     {
-      "note": "1 swings it to 3. The bigs exchange: 4 dives to the new ball-side block and 5 flashes to the elbow. 2 bends along the baseline to the opposite corner.",
+      "note": "Reverse it: 2 passes back to 1. 5 flashes up to the middle of the free throw line, the spot 4 just left.",
+      "actions": [
+        { "type": "pass", "from": "o2", "to": "o1" },
+        { "type": "cut", "player": "o5", "path": [[260, 226]] }
+      ]
+    },
+    {
+      "note": "1 swings it to 3. 5 slides to the ball-side elbow, and 2 bends along the baseline to the opposite corner.",
       "actions": [
         { "type": "pass", "from": "o1", "to": "o3" },
-        { "type": "cut", "player": "o4", "path": [[290, 165], [192, 115]] },
-        { "type": "cut", "player": "o5", "path": [[250, 150], [198, 232]] },
+        { "type": "cut", "player": "o5", "path": [[200, 232]] },
         { "type": "cut", "player": "o2", "path": [[430, 110], [260, 58], [42, 72]] }
       ]
     },

@@ -62,9 +62,10 @@
     }
 
     try {
-      const index = await (await fetch('plays/index.json')).json();
+      const fresh = { cache: 'no-cache' }; // revalidate, so edited plays show up right away
+      const index = await (await fetch('plays/index.json', fresh)).json();
       const entries = index.groups.flatMap((g) => g.plays);
-      const loaded = await Promise.all(entries.map((e) => fetch(`plays/${e.slug}.json`).then((r) => r.json())));
+      const loaded = await Promise.all(entries.map((e) => fetch(`plays/${e.slug}.json`, fresh).then((r) => r.json())));
       const bySlug = new Map(entries.map((e, i) => [e.slug, loaded[i]]));
 
       for (const group of index.groups) {
