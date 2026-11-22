@@ -11,6 +11,7 @@ export const MOVE_TYPES = ['cut', 'dribble', 'screen', 'handoff'];
 
 const LEAD_IN = 0.3; // seconds the step's lines are shown before anything moves
 const TAIL = 0.4; // hold on the end frame
+const READ_HOLD = 1; // extra time on a step that only shows reads
 const HANDOFF = 0.3;
 const MOVE_SPEED = 140; // court units per second (14 ft/s)
 const PASS_SPEED = 380;
@@ -190,11 +191,12 @@ export function buildStep(play, index) {
       handoffs(post);
     }
   }
-  const duration = t + TAIL;
-  hold(duration);
-
-  // "look" actions mark a read the ball handler makes; nothing moves.
+  // "look" actions mark a read the ball handler makes; nothing moves. A step
+  // that is only a read stays up a little longer so it can be taken in.
   const looks = actions.filter((a) => a.type === 'look' && start[a.from] && start[a.to]);
+  const readOnly = looks.length && !moves.length && !pass;
+  const duration = t + TAIL + (readOnly ? READ_HOLD : 0);
+  hold(duration);
 
   return { index, duration, start, tracks, ball, holder, endHolder: current, pass, passWindow, looks };
 }

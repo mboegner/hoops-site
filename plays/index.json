@@ -35,6 +35,13 @@
         { "slug": "4-across", "label": "4-Across" },
         { "slug": "4-across-screen", "label": "Screen for 1" }
       ]
+    },
+    {
+      "title": "Inbounds",
+      "subtitle": "Sideline",
+      "plays": [
+        { "slug": "victor-lazlo", "label": "Victor Lazlo" }
+      ]
     }
   ]
 }
