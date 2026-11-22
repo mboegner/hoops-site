@@ -168,6 +168,8 @@ html { scroll-behavior: smooth; }
 .bp-arrow { fill: var(--move); }
 .bp-line.bp-pass { stroke: var(--pass); stroke-dasharray: 9 8; }
 .bp-arrow.bp-pass { fill: var(--pass); }
+.bp-line.bp-look { stroke: var(--pass); stroke-width: 2.5; stroke-dasharray: 2 8; opacity: 0.8; }
+.bp-arrow.bp-look { fill: var(--pass); opacity: 0.8; }
 
 .bp-token text {
   font-weight: 800;

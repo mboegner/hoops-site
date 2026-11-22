@@ -4,18 +4,18 @@
   "court": "half",
   "level": "youth",
   "goal": "Get the ball to the high post, then cut behind defenders who are watching it.",
-  "options": "41: 2 backdoor. 42: 3 backdoor off 5's screen. Nothing? 4 turns and attacks.",
+  "options": "41: 2 backdoor. 42: 3 backdoor off 5's screen. Nothing? 4 drives or shoots.",
   "start": { "o1": [260, 345], "o2": [445, 240], "o3": [75, 240], "o4": [320, 230], "o5": [200, 230] },
   "ball": "o1",
   "steps": [
     {
-      "note": "1 passes to 4 at the high post.",
+      "note": "1 passes to 4 at the high post. 4 reverse pivots to face up the defender in triple threat: drive, shoot, or pass.",
       "actions": [
         { "type": "pass", "from": "o1", "to": "o4" }
       ]
     },
     {
-      "note": "41: 2 cuts backdoor. 4 turns and looks.",
+      "note": "41: 2 cuts backdoor. 4 looks for the pass.",
       "actions": [
         { "type": "cut", "player": "o2", "path": [[435, 175], [305, 105]] }
       ]
@@ -28,7 +28,7 @@
       ]
     },
     {
-      "note": "3 cuts backdoor off 5's screen. 4 hits the open cutter, or turns and attacks.",
+      "note": "3 cuts backdoor off 5's screen. 4 hits the open cutter, or drives or shoots.",
       "actions": [
         { "type": "cut", "player": "o3", "path": [[85, 170], [215, 105]] }
       ]

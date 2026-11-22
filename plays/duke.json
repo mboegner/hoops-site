@@ -13,7 +13,7 @@
   "ball": "o1",
   "steps": [
     {
-      "note": "4 comes up and screens the defender on the ball. Stand still: no wiggling. Let 1 set it up.",
+      "note": "4 comes up and screens the defender on the ball. Hold the screen still and let 1 set it up.",
       "actions": [
         { "type": "screen", "player": "o4", "path": [[325, 215], [295, 304]] }
       ]

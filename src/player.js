@@ -75,24 +75,33 @@ function drawLines(group, tl) {
     const tip = track.path[track.path.length - 1];
     if (track.type === 'screen' || track.type === 'handoff') {
       el('path', { d: d(track.path), class: `bp-line ${cls}` }, group);
-      bar(group, tip, dir, cls);
-      if (track.type === 'handoff') bar(group, { x: tip.x - dir.x * 7, y: tip.y - dir.y * 7 }, dir, cls);
+      if (track.type === 'screen') {
+        // The bar sits just ahead of the screener, so it still shows once they arrive.
+        bar(group, { x: tip.x + dir.x * (TOKEN_R + 4), y: tip.y + dir.y * (TOKEN_R + 4) }, dir, cls, 15);
+      } else {
+        bar(group, tip, dir, cls);
+        bar(group, { x: tip.x - dir.x * 7, y: tip.y - dir.y * 7 }, dir, cls);
+      }
     } else {
       const body = trimEnd(track.type === 'dribble' ? wavy(track.path) : track.path, 10);
       el('path', { d: d(body), class: `bp-line ${cls}` }, group);
       arrowHead(group, tip, dir, cls);
     }
   }
-  if (tl.pass && tl.passWindow) {
-    const from = frameAt(tl, tl.passWindow.t0).pos[tl.pass.from];
-    const to = frameAt(tl, tl.passWindow.t1).pos[tl.pass.to];
+  const between = (from, to, cls) => {
     const len = Math.hypot(to.x - from.x, to.y - from.y) || 1;
     const dir = { x: (to.x - from.x) / len, y: (to.y - from.y) / len };
     const a = { x: from.x + dir.x * (TOKEN_R + 4), y: from.y + dir.y * (TOKEN_R + 4) };
     const tip = { x: to.x - dir.x * (TOKEN_R + 4), y: to.y - dir.y * (TOKEN_R + 4) };
-    el('path', { d: d([a, { x: tip.x - dir.x * 10, y: tip.y - dir.y * 10 }]), class: 'bp-line bp-pass' }, group);
-    arrowHead(group, tip, dir, 'bp-pass');
+    el('path', { d: d([a, { x: tip.x - dir.x * 10, y: tip.y - dir.y * 10 }]), class: `bp-line ${cls}` }, group);
+    arrowHead(group, tip, dir, cls);
+  };
+  if (tl.pass && tl.passWindow) {
+    between(frameAt(tl, tl.passWindow.t0).pos[tl.pass.from], frameAt(tl, tl.passWindow.t1).pos[tl.pass.to], 'bp-pass');
   }
+  // A "look" is a pass the ball handler reads but does not throw in this step.
+  const end = frameAt(tl, tl.duration).pos;
+  for (const look of tl.looks) between(end[look.from], end[look.to], 'bp-look');
 }
 
 function make(tag, cls, parent, text) {

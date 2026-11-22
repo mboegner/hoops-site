@@ -4,35 +4,36 @@
   "court": "half",
   "level": "youth",
   "goal": "Punish a defender who denies the wing: dribble at them and cut behind.",
-  "options": "Best: 2 on the backdoor. Next: 5 off the pick, then 4 coming back.",
+  "options": "Best: 2 on the backdoor. Next: 5 curling down the lane, then 4 at the elbow for the jump shot.",
   "start": { "o1": [260, 345], "o2": [445, 240], "o3": [75, 240], "o4": [320, 230], "o5": [200, 230] },
   "ball": "o1",
   "steps": [
     {
-      "note": "1 dribbles right at 2. That is the signal: 2 cuts backdoor to the rim.",
+      "note": "1 dribbles at 2 and stops at the foul line extended. That is the signal: 2 cuts backdoor to the rim.",
       "actions": [
-        { "type": "dribble", "player": "o1", "path": [[400, 278]] },
+        { "type": "dribble", "player": "o1", "path": [[335, 305], [425, 236]] },
         { "type": "cut", "player": "o2", "path": [[435, 175], [300, 105]] }
       ]
     },
     {
-      "note": "1 looks for 2. Not there? 2 clears out to the far wing and 3 fills the top.",
+      "note": "1 looks for 2. Not there? All at once: 2 clears out to the far wing, 3 fills the top, and 4 sets a screen away for 5.",
       "actions": [
         { "type": "cut", "player": "o2", "path": [[185, 105], [75, 240]] },
-        { "type": "cut", "player": "o3", "path": [[150, 325], [255, 350]] }
-      ]
-    },
-    {
-      "note": "4 goes to set a pick away for 5.",
-      "actions": [
+        { "type": "cut", "player": "o3", "path": [[150, 325], [255, 350]] },
         { "type": "screen", "player": "o4", "path": [[237, 232]] }
       ]
     },
     {
-      "note": "5 cuts off the pick to the ball-side elbow. 4 comes back and dives to the block. 1 looks for both.",
+      "note": "5 curls off the screen and down the right side of the lane, looking for the pass inside.",
       "actions": [
-        { "type": "cut", "player": "o5", "path": [[245, 280], [322, 240]] },
-        { "type": "cut", "player": "o4", "path": [[275, 170], [325, 118]] }
+        { "type": "cut", "player": "o5", "path": [[240, 300], [300, 240], [305, 135]] }
+      ]
+    },
+    {
+      "note": "4 returns to the elbow for a pass and the elbow jump shot. 5 goes back to the other elbow. We are back in our starting spots and can reverse it from here.",
+      "actions": [
+        { "type": "cut", "player": "o4", "path": [[320, 230]] },
+        { "type": "cut", "player": "o5", "path": [[262, 165], [200, 230]] }
       ]
     }
   ]

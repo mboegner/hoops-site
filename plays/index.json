@@ -32,8 +32,7 @@
       "title": "4-Across",
       "subtitle": "Press break",
       "plays": [
-        { "slug": "4-across-5", "label": "Ball to 5" },
-        { "slug": "4-across-3", "label": "Ball to 3" },
+        { "slug": "4-across", "label": "4-Across" },
         { "slug": "4-across-screen", "label": "Screen for 1" }
       ]
     }

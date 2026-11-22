@@ -1,0 +1,46 @@
+{
+  "name": "4-Across",
+  "subtitle": "Press break",
+  "court": "full",
+  "level": "youth",
+  "goal": "Beat the press with passes, not dribbles. Catch it and look up.",
+  "options": "First: 1 up the sideline for the fast break. Backup, always there: back to 3, then reverse to 4.",
+  "versus": "Full-court zone press",
+  "start": { "o3": [300, 900], "o4": [55, 690], "o2": [195, 690], "o1": [325, 690], "o5": [465, 690] },
+  "ball": "o3",
+  "steps": [
+    {
+      "note": "3 fakes a pass to the middle, then hits 5. If 5 is covered, look to 4, then 1. Ball to 4 is the same pattern on the other side.",
+      "actions": [
+        { "type": "pass", "from": "o3", "to": "o5" }
+      ]
+    },
+    {
+      "note": "On the catch: 1 angle-cuts to the sideline at half court. 2 angle-cuts to the right side of the center circle. 4 comes up to the first sideline mark and stays back for the reversal. 3 steps in behind the ball as the safety.",
+      "actions": [
+        { "type": "cut", "player": "o1", "path": [[470, 480]] },
+        { "type": "cut", "player": "o2", "path": [[312, 468]] },
+        { "type": "cut", "player": "o4", "path": [[60, 600]] },
+        { "type": "cut", "player": "o3", "path": [[170, 800]] }
+      ]
+    },
+    {
+      "note": "First look: 1 up the sideline for the fast break. The defense will start taking this away.",
+      "actions": [
+        { "type": "look", "from": "o5", "to": "o1" }
+      ]
+    },
+    {
+      "note": "The backup is always there: 5 passes back to 3.",
+      "actions": [
+        { "type": "pass", "from": "o5", "to": "o3" }
+      ]
+    },
+    {
+      "note": "3 reverses the ball to 4 on the other side.",
+      "actions": [
+        { "type": "pass", "from": "o3", "to": "o4" }
+      ]
+    }
+  ]
+}

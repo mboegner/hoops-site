@@ -3,8 +3,8 @@
   "subtitle": "Wing double screen away",
   "court": "half",
   "level": "youth",
-  "goal": "Free a shooter with two screens away from the ball.",
-  "options": "Best: 3 off the double screen. Next: 4 or 5 rolling to the rim.",
+  "goal": "Sell 4 as the first option, then spring 3 through a double screen for a layup.",
+  "options": "Best: 3 catching at the free throw line and finishing at speed. 4 in the short corner is the decoy.",
   "start": { "o1": [260, 345], "o2": [445, 240], "o3": [75, 240], "o4": [320, 230], "o5": [200, 230] },
   "ball": "o1",
   "steps": [
@@ -15,18 +15,26 @@
       ]
     },
     {
-      "note": "4 and 5 set a double screen for 3. 1 cuts through to the far corner.",
+      "note": "4 goes to screen for 2. At the same time, 1 and 5 set a double screen for 3.",
       "actions": [
-        { "type": "screen", "player": "o5", "path": [[128, 262]] },
-        { "type": "screen", "player": "o4", "path": [[250, 270], [165, 268]] },
-        { "type": "cut", "player": "o1", "path": [[265, 180], [130, 95], [42, 72]] }
+        { "type": "screen", "player": "o4", "path": [[405, 236]] },
+        { "type": "screen", "player": "o5", "path": [[166, 203]] },
+        { "type": "screen", "player": "o1", "path": [[235, 300], [166, 273]] }
       ]
     },
     {
-      "note": "3 curls off the double screen to the top. 2 hits 3 for the shot.",
+      "note": "4 slips to the short corner, calling for the ball. 4 is the decoy. 3 explodes through the two screens, and 2 hits 3 at the free throw line.",
+      "passTiming": "together",
       "actions": [
-        { "type": "cut", "player": "o3", "path": [[130, 318], [250, 335]] },
+        { "type": "cut", "player": "o4", "path": [[425, 150], [392, 82]] },
+        { "type": "cut", "player": "o3", "path": [[260, 236]] },
         { "type": "pass", "from": "o2", "to": "o3" }
+      ]
+    },
+    {
+      "note": "3 keeps going straight down the lane at full speed for the layup.",
+      "actions": [
+        { "type": "dribble", "player": "o3", "path": [[262, 120]] }
       ]
     }
   ]

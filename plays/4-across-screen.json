@@ -1,33 +1,33 @@
 {
   "name": "4-Across: screen for 1",
-  "subtitle": "Press break, when 3 and 5 are shut down",
+  "subtitle": "Press break, when 4 and 5 are shut down",
   "court": "full",
   "level": "youth",
   "goal": "If they take away both sidelines, free the point guard in the middle.",
-  "options": "Best: 1 coming back to the ball off 2's screen. Then 1 looks long to 3 or 5.",
+  "options": "Best: 1 coming back to the ball off 2's screen. Then 1 looks long to 4 or 5.",
   "versus": "Full-court zone press",
-  "start": { "o4": [300, 900], "o3": [55, 690], "o2": [195, 690], "o1": [325, 690], "o5": [465, 690] },
-  "ball": "o4",
+  "start": { "o3": [300, 900], "o4": [55, 690], "o2": [195, 690], "o1": [325, 690], "o5": [465, 690] },
+  "ball": "o3",
   "steps": [
     {
-      "note": "3 and 5 are shut down, so they go long. 2 screens for 1.",
+      "note": "4 and 5 are shut down, so they go long. 2 screens for 1.",
       "actions": [
-        { "type": "cut", "player": "o3", "path": [[60, 440]] },
+        { "type": "cut", "player": "o4", "path": [[60, 440]] },
         { "type": "cut", "player": "o5", "path": [[460, 440]] },
         { "type": "screen", "player": "o2", "path": [[287, 700]] }
       ]
     },
     {
-      "note": "1 comes off the screen back toward the ball. 4 passes to 1.",
+      "note": "1 comes off the screen back toward the ball. 3 passes to 1.",
       "actions": [
         { "type": "cut", "player": "o1", "path": [[285, 752], [215, 790]] },
-        { "type": "pass", "from": "o4", "to": "o1" }
+        { "type": "pass", "from": "o3", "to": "o1" }
       ]
     },
     {
-      "note": "4 steps in behind the ball as the safety. 1 looks up the floor.",
+      "note": "3 steps in behind the ball as the safety. 1 looks up the floor.",
       "actions": [
-        { "type": "cut", "player": "o4", "path": [[375, 815]] }
+        { "type": "cut", "player": "o3", "path": [[375, 815]] }
       ]
     }
   ]

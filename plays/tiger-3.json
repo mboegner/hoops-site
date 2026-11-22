@@ -3,8 +3,8 @@
   "subtitle": "Wing pick and roll",
   "court": "half",
   "level": "youth",
-  "goal": "Make it 2-on-1 with a ball screen on the wing.",
-  "options": "Best: 2 attacking off the screen. Next: 4 on the roll. Nothing? Reverse it and try again.",
+  "goal": "A classic pick and roll: 2 and 4 play a two-man game on the wing.",
+  "options": "Best: 4 on the roll, or 2 scoring off the screen. Nothing? Reverse it and try again.",
   "start": { "o1": [260, 345], "o2": [445, 240], "o3": [75, 240], "o4": [320, 230], "o5": [200, 230] },
   "ball": "o1",
   "steps": [
@@ -15,22 +15,22 @@
       ]
     },
     {
-      "note": "4 sprints out and screens 2's defender. Run like a boss!",
+      "note": "4 sprints out and screens 2's defender on the inside, between 2 and the basket.",
       "actions": [
-        { "type": "screen", "player": "o4", "path": [[408, 256]] }
+        { "type": "screen", "player": "o4", "path": [[408, 222]] }
       ]
     },
     {
-      "note": "2 dribbles off the screen toward the middle. 4 rolls to the basket.",
+      "note": "2 drives off the screen toward the lane. 4 rolls straight to the basket.",
       "actions": [
-        { "type": "dribble", "player": "o2", "path": [[412, 300], [338, 268]] },
-        { "type": "cut", "player": "o4", "path": [[372, 180], [300, 110]] }
+        { "type": "dribble", "player": "o2", "path": [[425, 290], [340, 205]] },
+        { "type": "cut", "player": "o4", "path": [[380, 150], [300, 112]] }
       ]
     },
     {
-      "note": "Nothing there? Reverse the ball and try again on the other side.",
+      "note": "2 hits 4 on the roll for the layup. If it is not there, reverse the ball and run it on the other side.",
       "actions": [
-        { "type": "pass", "from": "o2", "to": "o1" }
+        { "type": "pass", "from": "o2", "to": "o4" }
       ]
     }
   ]

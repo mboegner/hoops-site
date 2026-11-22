@@ -193,7 +193,10 @@ export function buildStep(play, index) {
   const duration = t + TAIL;
   hold(duration);
 
-  return { index, duration, start, tracks, ball, holder, endHolder: current, pass, passWindow };
+  // "look" actions mark a read the ball handler makes; nothing moves.
+  const looks = actions.filter((a) => a.type === 'look' && start[a.from] && start[a.to]);
+
+  return { index, duration, start, tracks, ball, holder, endHolder: current, pass, passWindow, looks };
 }
 
 /** Player positions, ball position and holder at `time` seconds into a step. */

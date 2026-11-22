@@ -4,7 +4,7 @@
   "court": "half",
   "level": "youth",
   "goal": "Get the point guard a layup by cutting off the high-post screen.",
-  "options": "Best: 1 on the UCLA cut. Next: 5 off the pick. Safety: 3 at the top to reverse it.",
+  "options": "Best: 1 on the UCLA cut. Next: 5 curling down the lane, then 4 at the elbow for the jump shot.",
   "start": { "o1": [260, 345], "o2": [445, 240], "o3": [75, 240], "o4": [320, 230], "o5": [200, 230] },
   "ball": "o1",
   "steps": [
@@ -15,24 +15,31 @@
       ]
     },
     {
-      "note": "1 cuts hard off 4's shoulder to the block. That is the UCLA cut. 2 looks for the layup pass.",
+      "note": "4 screens for 1. 1 cuts hard off 4's shoulder to the block. That is the UCLA cut. 2 looks for the layup pass.",
       "actions": [
-        { "type": "cut", "player": "o1", "path": [[362, 232], [325, 118]] }
+        { "type": "screen", "player": "o4", "path": [[328, 250]] },
+        { "type": "cut", "player": "o1", "path": [[437, 240], [325, 118]] }
       ]
     },
     {
-      "note": "4 goes to pick away for 5. 3 fills the top. 1 clears out to the far wing.",
+      "note": "Not there? All at once: 1 clears out to the far wing, 3 fills the top, and 4 sets a screen away for 5.",
       "actions": [
-        { "type": "screen", "player": "o4", "path": [[237, 232]] },
+        { "type": "cut", "player": "o1", "path": [[190, 100], [75, 240]] },
         { "type": "cut", "player": "o3", "path": [[150, 325], [255, 350]] },
-        { "type": "cut", "player": "o1", "path": [[190, 100], [75, 240]] }
+        { "type": "screen", "player": "o4", "path": [[237, 232]] }
       ]
     },
     {
-      "note": "5 comes off the pick to the ball-side elbow. 4 comes back and dives to the block.",
+      "note": "5 curls off the screen and down the right side of the lane, looking for the pass inside.",
       "actions": [
-        { "type": "cut", "player": "o5", "path": [[245, 280], [322, 240]] },
-        { "type": "cut", "player": "o4", "path": [[275, 170], [325, 118]] }
+        { "type": "cut", "player": "o5", "path": [[240, 300], [300, 240], [305, 135]] }
+      ]
+    },
+    {
+      "note": "4 returns to the elbow for a pass and the elbow jump shot. 5 goes back to the other elbow. We are back in our starting spots and can reverse it from here.",
+      "actions": [
+        { "type": "cut", "player": "o4", "path": [[320, 230]] },
+        { "type": "cut", "player": "o5", "path": [[262, 165], [200, 230]] }
       ]
     }
   ]
