@@ -3,19 +3,19 @@
   "subtitle": "Zone offense: seal the elbow, overload one side",
   "court": "half",
   "level": "youth",
-  "goal": "Seal the elbow defender inside and overload the ball side. Read it, don't force it.",
+  "goal": "Seal the elbow defender inside so they cannot get out to the wing, then overload the ball side.",
   "options": "1 reads: pull-up, 2 in the corner, 4 at the elbow, or 5 on the block. 4 can go high-low to 5. Nothing? Reverse to 3.",
   "versus": "1-2-2, 3-2 and 2-3 zones",
   "start": {
-    "o1": [260, 352], "o2": [445, 240], "o3": [75, 240], "o4": [328, 112], "o5": [192, 112],
-    "x1": [260, 300], "x2": [182, 228], "x3": [338, 228], "x4": [228, 150], "x5": [292, 150]
+    "o1": [260, 352], "o2": [445, 240], "o3": [75, 240], "o4": [360, 112], "o5": [160, 112],
+    "x1": [260, 300], "x2": [200, 230], "x3": [320, 230], "x4": [198, 120], "x5": [322, 120]
   },
   "ball": "o1",
   "steps": [
     {
-      "note": "4 comes up and screens the defender at the elbow from the outside, so that defender cannot get out toward the three-point line. Hold the screen still.",
+      "note": "4 comes up and screens X3, the defender on the elbow, from the outside. That seals X3 in so they cannot get out to 2. Hold the screen still.",
       "actions": [
-        { "type": "screen", "player": "o4", "path": [[398, 170], [363, 255]] }
+        { "type": "screen", "player": "o4", "path": [[410, 190], [392, 236], [356, 234]] }
       ]
     },
     {
@@ -24,7 +24,7 @@
         { "type": "dribble", "player": "o1", "path": [[350, 348], [440, 268]] },
         { "type": "cut", "player": "o2", "path": [[478, 72]] },
         { "type": "cut", "player": "o3", "path": [[150, 325], [245, 355]] },
-        { "type": "cut", "player": "o5", "path": [[260, 98], [326, 116]] }
+        { "type": "cut", "player": "o5", "path": [[260, 50], [357, 116]] }
       ]
     },
     {

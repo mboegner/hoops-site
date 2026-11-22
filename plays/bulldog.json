@@ -48,9 +48,11 @@
       ]
     },
     {
-      "note": "Same motion, opposite side: 4 steps out and sets the flex screen for 3. Next, 3 makes the flex cut and 2 screens down for 4.",
+      "note": "Same motion, opposite side: 4 sets the flex screen and 3 makes the flex cut along the baseline to the other block. Next, 2 screens down for 4.",
       "actions": [
-        { "type": "screen", "player": "o4", "path": [[146, 106]] }
+        { "type": "screen", "player": "o4", "path": [[146, 106]] },
+        { "type": "cut", "player": "o3", "path": [[115, 58], [220, 72], [322, 118]] },
+        { "type": "look", "from": "o5", "to": "o3" }
       ]
     }
   ]
