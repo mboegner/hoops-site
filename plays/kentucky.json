@@ -22,7 +22,8 @@
       "note": "1 drives straight up the court right away. 3 trails behind 1 so there is always a pass back. 2 stays near the middle, connected to the play.",
       "actions": [
         { "type": "dribble", "player": "o1", "path": [[125, 535]] },
-        { "type": "cut", "player": "o3", "path": [[200, 650]] }
+        { "type": "cut", "player": "o3", "path": [[200, 650]] },
+        { "type": "cut", "player": "x1", "path": [[195, 566]] }
       ]
     },
     {

@@ -23,7 +23,7 @@
       ]
     },
     {
-      "note": "3 curls over the top of both screens, out past the three-point line, then turns straight down the lane. 2 hits 3 at the free throw line.",
+      "note": "3 curls over the top of both screens. 2 hits 3 exploding down the lane.",
       "passTiming": "together",
       "actions": [
         { "type": "cut", "player": "o3", "path": [[115, 305], [258, 312], [260, 236]] },

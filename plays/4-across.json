@@ -1,6 +1,6 @@
 {
   "name": "4-Across",
-  "subtitle": "Press break against a zone press",
+  "subtitle": "Press break",
   "court": "full",
   "level": "youth",
   "goal": "Beat the press with passes, not dribbles. Catch it and look up.",
@@ -25,7 +25,7 @@
       ]
     },
     {
-      "note": "First look: 1 up the sideline for the fast break. The defense will start taking this away.",
+      "note": "First look: 1 up the sideline for the fast break. The defense will start taking this away after a few repetitions.",
       "actions": [
         { "type": "look", "from": "o5", "to": "o1" }
       ]

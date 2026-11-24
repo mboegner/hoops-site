@@ -9,7 +9,7 @@
   "ball": "o1",
   "steps": [
     {
-      "note": "1 dribbles at 2 and stops at the foul line extended. That is the signal: 2 cuts backdoor to the rim.",
+      "note": "1 dribbles at 2 and stops at the foul line extended. 2 cuts backdoor to the rim.",
       "actions": [
         { "type": "dribble", "player": "o1", "path": [[335, 305], [425, 236]] },
         { "type": "cut", "player": "o2", "path": [[435, 175], [300, 105]] },
